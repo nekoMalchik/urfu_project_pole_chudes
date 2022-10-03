@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import "./wheelAtributesCSS/wheelSpin.css";
+import "./wheelSpin.css";
 
 
 export default class Wheel extends Component {
@@ -38,7 +38,7 @@ export default class Wheel extends Component {
         let pieceNum = this.getPieceByAngle(angle);
         this.setState({piece: pieceNum});
         setTimeout(function() {
-            let pieceBox = document.querySelector("#pieceBox");
+            let pieceBox = document.querySelector("#outputBox");
             pieceBox.textContent = pieceNum.toString();
         }, 3000);
     }
@@ -46,7 +46,7 @@ export default class Wheel extends Component {
     render() {
         return (
             <div>
-                <button id="spin" onClick={this.handleClick}>Spin</button>
+                <button id="spin" onClick={this.handleClick}>PUSH</button>
                 <span className="arrow"></span>
                 <i className="arrow-left"></i>
                 <div className="container duration">
@@ -59,8 +59,6 @@ export default class Wheel extends Component {
                     <div className="seven">7</div>
                     <div className="eight">8</div>
                 </div>
-                <div>{this.state.num % 360}</div>
-                <div id="pieceBox" style={{fontSize: '100px'}}></div>
             </div>
         )
     }
