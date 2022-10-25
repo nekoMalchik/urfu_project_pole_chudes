@@ -1,5 +1,7 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import "./inputBox.css";
+import "../databaseImitation/databaseImitation";
+import {getQuestionPair} from "../databaseImitation/databaseImitation";
 
 
 export default function InputBox() {
@@ -8,7 +10,9 @@ export default function InputBox() {
     const arr_ru = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ь', 'ы', 'ъ', 'э', 'ю', 'я',
         'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ь', 'Ы', 'Ъ', 'Э', 'Ю', 'Я'];
     //TODO переписать под бэкенд
-    let word = ['M', 'U', 'L', 'E'];
+    let pair = getQuestionPair();
+    let word = pair[0];
+    let question = pair[1];
     let usedChars = [];
     let activeBoxValue = 0;
 
@@ -32,11 +36,14 @@ export default function InputBox() {
     }
 
     //TODO динамическое изменение размера бокса
-    const wordList = word.map((char, index) => <input className={`char char-${index}`} inputboxnumber={index} type="text" disabled={false} maxLength="1" onKeyDown={inputBoxHandler}/>);
+    let wordList = word.map((char, index) => <input className={`char char-${index}`} inputboxnumber={index} type="text" disabled={false} maxLength="1" onKeyDown={inputBoxHandler}/>);
     return (
         <div>
             <div className="inputbox">
-              {wordList}
+                {wordList}
+            </div>
+            <div className="questionbox">
+                {question}
             </div>
             <div>
                 <br></br>
