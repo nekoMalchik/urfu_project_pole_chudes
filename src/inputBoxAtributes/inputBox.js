@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from "react";
 import "./inputBox.css";
 import "../databaseImitation/databaseImitation";
-import {getQuestionPair} from "../databaseImitation/databaseImitation";
+import {getQuestionPair, getTurn, setTurn} from "../databaseImitation/databaseImitation";
 
 
 export default function InputBox() {
@@ -24,6 +24,8 @@ export default function InputBox() {
     }
 
     function disableRightGuess() {
+        setTurn((getTurn()+1) % 3);
+        getTurn();
         let dom = document.querySelector(`[inputboxnumber="${activeBoxValue}"]`);
         //TODO фиксация буквы
         if (dom.value === word[activeBoxValue])

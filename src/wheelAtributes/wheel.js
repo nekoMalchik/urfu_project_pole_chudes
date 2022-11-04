@@ -1,26 +1,30 @@
-import React, {Component} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import "./wheelSpin.css";
 
 
-export default class Wheel extends Component {
-    constructor() {
-        super();
+export function Wheel() {
 
-        this.state = {
-            num: 0,
-            piece: 0
-        }
+    const [num, setNum] = useState(0);
+    const wheelSpin = useRef(null);
+
+
+    const handleClick = () => {
+        setNum(num + Math.ceil(Math.random() * (600) + 400));
     }
 
-    handleClick = () => {
-        this.setState({num: this.state.num + Math.ceil(Math.random() * (600) + 400 )},
-            function () {
-            document.querySelector(".container").style.transform = "rotate(" + this.state.num +"deg)";
-            this.setWheelNumber();
-        });
+    useEffect(
+        () => {
+            doSpin();
+            setWheelNumber();
+            console.log(num);
+        },
+    );
+
+    const doSpin = () => {
+        wheelSpin.current.style.transform = "rotate(" + num + "deg)";
     }
 
-    getPieceByAngle(angle) {
+    const getPieceByAngle = (angle) => {
         let pieceNum;
         if (angle < 90)
             pieceNum=Math.abs(angle-90)
@@ -33,33 +37,30 @@ export default class Wheel extends Component {
         return Math.floor(pieceNum / 45 + 1);
     }
 
-    setWheelNumber = () => {
-        let angle = this.state.num % 360;
-        let pieceNum = this.getPieceByAngle(angle);
-        this.setState({piece: pieceNum});
+    const setWheelNumber = () => {
+        let angle = num % 360;
+        let pieceNum = getPieceByAngle(angle);
         setTimeout(function() {
             let pieceBox = document.querySelector("#outputBox");
             pieceBox.textContent = pieceNum.toString();
         }, 3000);
     }
 
-    render() {
-        return (
-            <div>
-                <button id="spin" onClick={this.handleClick}>PUSH</button>
-                <span className="arrow"></span>
-                <i className="arrow-left"></i>
-                <div className="container duration">
-                    <div className="one">1</div>
-                    <div className="two">2</div>
-                    <div className="three">3</div>
-                    <div className="four">4</div>
-                    <div className="five">5</div>
-                    <div className="six">6</div>
-                    <div className="seven">7</div>
-                    <div className="eight">8</div>
-                </div>
+    return (
+        <div>
+            <button id="spin" onClick={handleClick}>PUSH</button>
+            <span className="arrow"></span>
+            <i className="arrow-left"></i>
+            <div className="container duration" ref={wheelSpin}>
+                <div className="one">1</div>
+                <div className="two">2</div>
+                <div className="three">3</div>
+                <div className="four">4</div>
+                <div className="five">5</div>
+                <div className="six">6</div>
+                <div className="seven">7</div>
+                <div className="eight">8</div>
             </div>
-        )
-    }
+        </div>
+    );
 }

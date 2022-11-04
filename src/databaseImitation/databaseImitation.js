@@ -8,11 +8,25 @@ let questions = [
     ["БУНГАЛО", "Легкая загородная постройка с верандой, распространенная в тропических странах"]
 ]
 
+let currentTurn = 0;
+let players = ['shrt', 'mediumNm', 'veryLongName'];
 
+export function getCurrentPlayer() {
+    return players[currentTurn];
+}
 
 export function getQuestionPair() {
     let rand = Math.floor(Math.random() * questions.length);
     let pair = questions[rand];
     pair = [pair[0].split(''), pair[1]];
     return pair;
+}
+
+export function getTurn() {
+    console.log("Turn "+currentTurn);
+    return currentTurn;
+}
+
+export function setTurn(turn) {
+    currentTurn = turn;
 }
