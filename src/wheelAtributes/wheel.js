@@ -16,7 +16,6 @@ export function Wheel() {
         () => {
             doSpin();
             setWheelNumber();
-            console.log(num);
         },
     );
 
@@ -41,8 +40,13 @@ export function Wheel() {
         let angle = num % 360;
         let pieceNum = getPieceByAngle(angle);
         setTimeout(function() {
+
             let pieceBox = document.querySelector("#outputBox");
             pieceBox.textContent = pieceNum.toString();
+            fetch("http://127.0.0.1:8000/setPiece", {
+                method : 'POST',
+                body : JSON.stringify({'pieceNum' : pieceNum}) ,
+            })
         }, 3000);
     }
 

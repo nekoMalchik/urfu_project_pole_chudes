@@ -1,24 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
+import {Wheel} from "./wheelAtributes/wheel";
+import OutputBox from "./outputBoxAtributes/outputBox";
+import InputBox from "./inputBoxAtributes/inputBox";
+import React from "react";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        <div className="grid-container">
+          <div className="grid-col-1">
+            <Wheel />
+          </div>
+          <div className="grid-col-2">
+            <OutputBox />
+          </div>
+          <div className="grid-col-3">
+            <InputBox />
+          </div>
+        </div>
+      </div>
   );
 }
 

@@ -23,7 +23,6 @@ export function getQuestionPair() {
 }
 
 export function getTurn() {
-    console.log("Turn "+currentTurn);
     return currentTurn;
 }
 

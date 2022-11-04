@@ -1,0 +1,15 @@
+.lobbyStand {
+    width: 200px;
+    margin: 20px 30px 0 0;
+    height: 200px;
+    padding: 10px;
+}
+
+.lobbyStands {
+    display: flex;
+    flex-direction: row;
+}
+
+.currentTurn {
+    background-color: red;
+}
