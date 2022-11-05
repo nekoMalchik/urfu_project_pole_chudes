@@ -4,7 +4,15 @@ import "./wheelSpin.css";
 
 export function Wheel() {
 
-    const [num, setNum] = useState(0);
+    const [num, setNum] = useState(() => {
+        fetch("http://127.0.0.1:8000/piece")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setNum(parseInt(result.piece))
+                },
+            );
+    });
     const wheelSpin = useRef(null);
 
 
@@ -39,20 +47,19 @@ export function Wheel() {
     const setWheelNumber = () => {
         let angle = num % 360;
         let pieceNum = getPieceByAngle(angle);
+        fetch("http://127.0.0.1:8000/setPiece",{
+            method : 'POST',
+            body : JSON.stringify({'num' : num}),
+        }).then(response => response.json())
         setTimeout(function() {
-
             let pieceBox = document.querySelector("#outputBox");
             pieceBox.textContent = pieceNum.toString();
-            fetch("http://127.0.0.1:8000/setPiece", {
-                method : 'POST',
-                body : JSON.stringify({'pieceNum' : pieceNum}) ,
-            })
         }, 3000);
     }
 
     return (
         <div>
-            <button id="spin" onClick={handleClick}>PUSH</button>
+            <button id="spin" onClick={ () => {handleClick()}}>PUSH</button>
             <span className="arrow"></span>
             <i className="arrow-left"></i>
             <div className="container duration" ref={wheelSpin}>
