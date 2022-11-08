@@ -30,6 +30,8 @@ export default function InputBox() {
     function inputBoxHandler(event) {
         if (arr_ru.includes(event.key)) {
             event.target.value = event.key.toString().toUpperCase();
+        } else {
+            event.target.value = event.target.replace(event.key, '');
         }
         setActiveBoxValue(event.target.getAttribute("inputboxnumber"));
     }

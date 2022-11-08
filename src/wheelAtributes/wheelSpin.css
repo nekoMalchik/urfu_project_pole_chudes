@@ -76,11 +76,6 @@
     color:#fff;
 }
 
-.arrow::before{
-    content:"\1F817";
-    font-size:50px;
-}
-
 .arrow-left {
     z-index: 10;
     position: relative;

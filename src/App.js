@@ -1,26 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
-import {Wheel} from "./wheelAtributes/wheel";
-import OutputBox from "./outputBoxAtributes/outputBox";
-import InputBox from "./inputBoxAtributes/inputBox";
 import React from "react";
+import {GameContainer} from "./mainAtributes/gameContainer";
+import {About} from "./pages/about";
+import {Donate} from "./pages/donate";
+import {Route, Routes} from "react-router-dom";
+import {Header} from "./mainAtributes/header";
 
 function App() {
-  return (
-      <div>
-        <div className="grid-container">
-          <div className="grid-col-1">
-            <Wheel />
-          </div>
-          <div className="grid-col-2">
-            <OutputBox />
-          </div>
-          <div className="grid-col-3">
-            <InputBox />
-          </div>
+    return (
+        <div>
+            <Header />
+            <Routes>
+                <Route path="/" element={<GameContainer />} />
+                <Route path="/posts" element={<Donate/>} />
+                <Route path="/about" element={<About/>} />
+            </Routes>
         </div>
-      </div>
-  );
+    );
 }
 
 export default App;

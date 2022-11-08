@@ -1,8 +1,10 @@
 .lobbyStand {
+    text-align: center;
     width: 200px;
     margin: 20px 30px 0 0;
     height: 200px;
-    padding: 10px;
+    padding-top: 40px;
+    font-size: 100px;
 }
 
 .lobbyStands {
