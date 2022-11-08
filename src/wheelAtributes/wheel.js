@@ -4,15 +4,14 @@ import "./wheelSpin.css";
 
 export function Wheel() {
 
-    const [num, setNum] = useState(() => {
-        fetch("http://127.0.0.1:8000/piece")
+    const [num, setNum] = useState(() => { return fetch("http://127.0.0.1:8000/piece")
             .then(res => res.json())
             .then(
                 (result) => {
                     setNum(parseInt(result.piece))
                 },
             );
-    });
+    })
     const wheelSpin = useRef(null);
 
 
@@ -29,6 +28,7 @@ export function Wheel() {
 
     const doSpin = () => {
         wheelSpin.current.style.transform = "rotate(" + num + "deg)";
+        console.log('spin ' + num);
     }
 
     const getPieceByAngle = (angle) => {
@@ -53,7 +53,9 @@ export function Wheel() {
         }).then(response => response.json())
         setTimeout(function() {
             let pieceBox = document.querySelector("#outputBox");
-            pieceBox.textContent = pieceNum.toString();
+            if (!isNaN(pieceNum)) {
+                pieceBox.textContent = pieceNum.toString();
+            }
         }, 3000);
     }
 

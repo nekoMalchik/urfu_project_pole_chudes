@@ -7,6 +7,16 @@
     margin-left: 10px;
 }
 
+.usedchars {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    letter-spacing: 25px;
+    font-size: 50px;
+}
+
 .char:disabled {
     color: black;
 }

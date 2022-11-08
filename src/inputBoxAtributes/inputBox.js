@@ -8,21 +8,27 @@ import LobbyStands from "../lobbyStand/lobbyStands";
 
 
 export default function InputBox() {
-    const arr_en = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
     const arr_ru = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ь', 'ы', 'ъ', 'э', 'ю', 'я',
         'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ь', 'Ы', 'Ъ', 'Э', 'Ю', 'Я'];
     //TODO переписать под бэкенд
     let pair = getQuestionPair();
-    let usedChars = [];
 
     const [turn, setTurn] = useState(null);
     const [riddle, setRiddle] = useState(null);
     const [answer, setAnswer] = useState([]);
     const [activeBoxValue, setActiveBoxValue] = useState(0);
+    const [usedChars, setUsedChars] = useState(() => {
+        fetch("http://127.0.0.1:8000/chars")
+        .then(res => res.json())
+        .then(
+            (result) => {
+                setUsedChars(result.usedChars)
+            },
+        );
+    })
 
     function inputBoxHandler(event) {
-        if (arr_en.includes(event.key) || arr_ru.includes(event.key)) {
+        if (arr_ru.includes(event.key)) {
             event.target.value = event.key.toString().toUpperCase();
         }
         setActiveBoxValue(event.target.getAttribute("inputboxnumber"));
@@ -30,12 +36,14 @@ export default function InputBox() {
 
     function disableRightGuess() {
         let dom = document.querySelector(`[inputboxnumber="${activeBoxValue}"]`);
-        if (dom.value === answer[activeBoxValue])
+        if (dom.value === answer[activeBoxValue]) {
             dom.disabled = true;
-        else {
-            usedChars.push(dom.value);
         }
-        console.log(dom.value);
+        fetch("http://127.0.0.1:8000/addChar",{
+            method : 'POST',
+            body : JSON.stringify({'char' : dom.value}),
+        }).then(response => response.json())
+        console.log(usedChars);
     }
 
 
@@ -59,7 +67,6 @@ export default function InputBox() {
     );
 
     function setNextTurn() {
-        //TODO КАК СДЕЛАТЬ-ТО НОРМАЛЬНО :(
         fetch("http://127.0.0.1:8000/incTurn")
             .then(res => res.json())
             .then(
@@ -82,6 +89,9 @@ export default function InputBox() {
             <div>
                 <br></br>
                 <button type="button" className="button-27" onClick={()=> {disableRightGuess(); setNextTurn()}}>Submit</button>
+            </div>
+            <div className="usedchars">
+                {usedChars}
             </div>
             <LobbyStands />
         </div>
