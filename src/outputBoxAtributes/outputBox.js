@@ -1,11 +1,11 @@
 import React from "react";
-import "./outputBox.css"
+import "./wheelBox.css"
 
 export default function OutputBox() {
 
     return (
         <div>
-            <div id="outputBox"></div>
+            <div id="wheelBox"></div>
         </div>
     );
 }

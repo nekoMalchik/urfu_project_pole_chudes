@@ -10,7 +10,7 @@
     border: 15px solid #dde;
     position: relative;
     overflow: hidden;
-    transition: 5s;
+    transition: 0s;
 }
 
 .container div{

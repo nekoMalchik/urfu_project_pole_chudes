@@ -8,6 +8,7 @@
 }
 
 .usedchars {
+    overflow-wrap: anywhere;
     display: flex;
     flex-direction: row;
     justify-content: center;
