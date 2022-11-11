@@ -7,7 +7,7 @@ import "../mainPage/mainPage.css"
 
 export function GameContainer() {
 
-    const [riddle, setRiddle] = useState(null);
+    const [riddle, setRiddle] = useState('');
     const [answer, setAnswer] = useState([]);
 
     useEffect(() => {
@@ -15,8 +15,8 @@ export function GameContainer() {
             .then(res => res.json())
             .then(
                 (result) => {
-                    setRiddle(result.riddle);
-                    setAnswer(result.answer);
+                    setRiddle(result.getRiddle);
+                    setAnswer(result.getAnswer);
                 },
             );
     }, []
@@ -32,9 +32,9 @@ export function GameContainer() {
                     <WheelBox />
                     <img style={{ width: 400 }} src={logo} alt="logo"/>
                 </div>
-                {/*<div className="grid-col-3">*/}
-                {/*    <InputBox answer={answer} riddle={riddle}/>*/}
-                {/*</div>*/}
+                <div className="grid-col-3">
+                    <InputBox riddle={riddle} answer={answer}/>
+                </div>
             </div>
     );
 }

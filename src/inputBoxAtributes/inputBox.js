@@ -7,7 +7,7 @@ import {WinCondition} from "./winCondition/winCondition";
 
 
 
-export default function InputBox(answer, riddle) {
+export default function InputBox(props) {
     const cells = useRef(null);
     const [modalActive, setModalActive] = useState(false);
     const [turn, setTurn] = useState(null);
@@ -33,7 +33,7 @@ export default function InputBox(answer, riddle) {
         let dom = document.querySelector(`[inputboxnumber="1"]`);
         let inputVal = dom.value;
         if (!usedChars.includes(inputVal)) {
-            if (answer.includes(inputVal)) {
+            if ([].includes(inputVal)) {
                 addGuessToServer(inputVal);
                 setNextTurn();
             }
@@ -82,7 +82,8 @@ export default function InputBox(answer, riddle) {
             <div className="inputbox" ref={cells}>
             </div>
             <div className="questionbox">
-                {riddle}
+                {props.riddle}
+                {props.answer}
             </div>
             <div>
                 <br></br>
