@@ -1,22 +1,37 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef} from "react";
+import './answerBox.css';
 
-export default function AnswerBox(usedChars, answer) {
+export default function AnswerBox(props) {
     const cells = useRef(null);
 
     function setCorrectInputs() {
         let i = 0;
         for (let cell of cells.current.children) {
-            if (usedChars.includes(answer[i])) {
+            if (props.usedChars.includes(props.answer[i])) {
                 cell.classList.add('correct');
-                cell.value = answer[i];
+                cell.innerText = props.answer[i];
                 cell.disabled = true;
             }
             i++;
         }
     }
+
+    function createAnswerBoxes() {
+        cells.current.innerHTML = '';
+        for (let i = 0; i < props.answer.length; i++) {
+            let char = document.createElement('div');
+            char.classList.add('answer-box');
+            cells.current.appendChild(char);
+        }
+    }
+
+    useEffect(()=> {
+        createAnswerBoxes();
+        setCorrectInputs();
+    });
+
     return (
-        <div ref={cells}>
-            <div></div>
+        <div ref={cells} className="answer-container">
         </div>
     );
 }

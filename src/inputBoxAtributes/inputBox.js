@@ -8,7 +8,7 @@ import {WinCondition} from "./winCondition/winCondition";
 
 
 export default function InputBox(props) {
-    const cells = useRef(null);
+    const cell = useRef(null);
     const [modalActive, setModalActive] = useState(false);
     const [turn, setTurn] = useState(null);
     const [usedChars, setUsedChars] = useState([]);
@@ -30,14 +30,13 @@ export default function InputBox(props) {
     }
 
     function disableRightGuess() {
-        let dom = document.querySelector(`[inputboxnumber="1"]`);
+        let dom = cell.current;
         let inputVal = dom.value;
         if (!usedChars.includes(inputVal)) {
-            if ([].includes(inputVal)) {
+            if (props.answer.includes(inputVal)) {
                 addGuessToServer(inputVal);
                 setNextTurn();
-            }
-            else {
+            } else {
                 console.log('Неверный ответ');
                 addGuessToServer(inputVal);
                 setNextTurn();
@@ -77,16 +76,19 @@ export default function InputBox(props) {
             )
     }
 
+    function prettyInput(event) {
+        event.target.value = event.key.toString().toUpperCase();
+    }
+
     return (
         <div>
-            <div className="inputbox" ref={cells}>
-            </div>
             <div className="questionbox">
                 {props.riddle}
-                {props.answer}
             </div>
-            <div>
-                <br></br>
+            <div className='inputbox-centered'>
+                <input className="inputbox" ref={cell} maxLength='1' onKeyDown={prettyInput}/>
+            </div>
+            <div className='inputbox-centered'>
                 <button type="button" className="button-27" onClick={()=> {disableRightGuess()}}>Submit</button>
             </div>
             <div className="usedchars">

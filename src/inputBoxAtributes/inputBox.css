@@ -33,11 +33,24 @@ input {
 
 .inputbox {
     display: inline-block;
+    width: 200px;
+    height: 200px;
+    font-size: 150px;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .questionbox {
     padding: 10px;
     font-size: 40px;
+}
+
+.inputbox-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .button-27 {
@@ -53,7 +66,7 @@ input {
     font-size: 16px;
     font-weight: 600;
     line-height: normal;
-    margin: 10px;
+    margin-bottom: 20px;
     min-height: 60px;
     min-width: 0;
     outline: none;
