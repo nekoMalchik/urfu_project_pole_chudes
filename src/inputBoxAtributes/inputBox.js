@@ -1,9 +1,10 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import "./inputBox.css";
 import "../databaseImitation/databaseImitation";
 import "../lobbyStand/lobbyStands";
 import LobbyStands from "../lobbyStand/lobbyStands";
 import {WinCondition} from "./winCondition/winCondition";
+import {ValueContext} from "../mainAtributes/gameContainer";
 
 
 
@@ -12,7 +13,11 @@ export default function InputBox(props) {
     const [modalActive, setModalActive] = useState(false);
     const [turn, setTurn] = useState(null);
     const [usedChars, setUsedChars] = useState([]);
+    const {setValue} = useContext(ValueContext);
 
+    function writeToContext(value) {
+        setValue(value);
+    }
 
 
     function addGuessToServer(inputVal) {
@@ -24,7 +29,9 @@ export default function InputBox(props) {
             .then(res => res.json())
             .then(
                 (result) => {
-                    setUsedChars(result.usedChars)
+                    setUsedChars(result.usedChars);
+                    console.log(result.usedChars);
+                    writeToContext(result.usedChars);
                 },
             );
     }

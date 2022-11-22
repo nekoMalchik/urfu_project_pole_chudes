@@ -1,13 +1,15 @@
-import React, {useEffect, useRef} from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import './answerBox.css';
+import {ValueContext} from "../mainAtributes/gameContainer";
 
 export default function AnswerBox(props) {
     const cells = useRef(null);
+    const {value} = useContext(ValueContext);
 
     function setCorrectInputs() {
         let i = 0;
         for (let cell of cells.current.children) {
-            if (props.usedChars.includes(props.answer[i])) {
+            if (value.includes(props.answer[i]) || props.usedChars.includes(props.answer[i])) {
                 cell.classList.add('correct');
                 cell.innerText = props.answer[i];
                 cell.disabled = true;

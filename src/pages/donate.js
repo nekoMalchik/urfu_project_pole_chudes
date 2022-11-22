@@ -1,3 +1,4 @@
+import React from "react";
 import Cat from "./resources/cat.gif";
 import "./css/about.css";
 

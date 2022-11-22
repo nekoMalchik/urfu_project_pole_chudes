@@ -1,3 +1,4 @@
+import React from "react";
 import Cat from "./yakubwin.png";
 import "./winCondition.css";
 
