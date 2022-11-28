@@ -2,18 +2,18 @@
     box-sizing:border-box;
 }
 
-.container{
+.wheelspin-container {
     width: 500px;
     height: 500px;
     background-color: #ccc;
     border-radius:50%;
-    border: 15px solid #dde;
+    border: 15px solid gray;
     position: relative;
     overflow: hidden;
     transition: 0s;
 }
 
-.container div{
+.wheelspin-container div{
     height:50%;
     width:200px;
     position: absolute;
@@ -35,35 +35,35 @@
     transition-duration: 3s;
 }
 
-.container .one{
+.wheelspin-container .one{
     background-color: #3f51b5;
     transform: rotate(22deg);
 }
-.container .two{
+.wheelspin-container .two{
     background-color: #ff9800;
     transform: rotate(67deg);
 }
-.container .three{
+.wheelspin-container .three{
     background-color: #e91e63;
     transform:rotate(112deg);
 }
-.container .four{
+.wheelspin-container .four{
     background-color: #4caf50;
     transform: rotate(157deg);
 }
-.container .five{
+.wheelspin-container .five{
     background-color: #009688;
     transform: rotate(202deg);
 }
-.container .six{
+.wheelspin-container .six{
     background-color: #795548;
     transform: rotate(247deg);
 }
-.container .seven{
+.wheelspin-container .seven{
     background-color: #9c27b0;
     transform: rotate(292deg);
 }
-.container .eight{
+.wheelspin-container .eight{
     background-color: #f44336;
     transform: rotate(337deg);
 }
@@ -79,13 +79,13 @@
 .arrow-left {
     z-index: 10;
     position: relative;
-    top: 303px;
-    left: 400px;
+    top: 280px;
+    left: 490px;
     transform: rotate(135deg);
 }
 
 i {
-    border: solid black;
+    border: solid white;
     width: 40px;
     height: 40px;
     border-width: 0 20px 20px 0;
@@ -96,16 +96,17 @@ i {
 #spin{
     position: relative;
     z-index: 10;
-    top: 290px;
-    left: 210px;
+    top: -330px;
+    left: 205px;
     background-color: #e2e2e2;
+    padding: 10px;
     text-transform: uppercase;
     border:8px solid #fff;
     font-weight:bold;
     color: darkred;
     font-size:18px;
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     font-family: sans-serif;
     border-radius:50%;
     cursor: pointer;

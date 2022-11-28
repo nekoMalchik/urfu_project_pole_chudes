@@ -45,6 +45,7 @@ input {
 .questionbox {
     padding: 10px;
     font-size: 40px;
+    color: white;
 }
 
 .inputbox-centered {

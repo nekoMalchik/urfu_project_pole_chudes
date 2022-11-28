@@ -58,10 +58,9 @@ export function Wheel() {
 
     return (
         <div>
-            <button id="spin" onClick={handleClick}>PUSH</button>
             <span className="arrow"></span>
             <i className="arrow-left"></i>
-            <div className="container duration" ref={wheelSpin}>
+            <div className="wheelspin-container duration" ref={wheelSpin}>
                 <div className="one">1</div>
                 <div className="two">2</div>
                 <div className="three">3</div>
@@ -71,6 +70,7 @@ export function Wheel() {
                 <div className="seven">7</div>
                 <div className="eight">8</div>
             </div>
+            <button id="spin" onClick={handleClick}>PUSH</button>
         </div>
     );
 }

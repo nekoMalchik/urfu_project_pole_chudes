@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useRef, useState} from "react";
+import React, {useContext, useEffect, useRef} from "react";
 import './answerBox.css';
 import {ValueContext} from "../mainAtributes/gameContainer";
 
@@ -21,6 +21,7 @@ export default function AnswerBox(props) {
     function createAnswerBoxes() {
         cells.current.innerHTML = '';
         for (let i = 0; i < props.answer.length; i++) {
+            console.log(props.answer);
             let char = document.createElement('div');
             char.classList.add('answer-box');
             cells.current.appendChild(char);
@@ -30,10 +31,10 @@ export default function AnswerBox(props) {
     useEffect(()=> {
         createAnswerBoxes();
         setCorrectInputs();
-    });
+    }, [value]);
 
     return (
-        <div ref={cells} className="answer-container">
+        <div ref={cells} className="answer-container ">
         </div>
     );
 }

@@ -5,7 +5,7 @@ export default function OutputBox() {
 
     return (
         <div>
-            <div id="wheelBox"></div>
+            <div className="white-text" id="wheelBox"></div>
         </div>
     );
 }
