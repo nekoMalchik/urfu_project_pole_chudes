@@ -27,10 +27,6 @@
     background-color: green;
 }
 
-input {
-    caret-color: transparent;
-}
-
 .inputbox {
     display: inline-block;
     width: 200px;
@@ -40,12 +36,12 @@ input {
     padding: 5px;
     margin-bottom: 20px;
     margin-top: 20px;
+    caret-color: transparent;
 }
 
 .questionbox {
     padding: 10px;
     font-size: 40px;
-    color: white;
 }
 
 .inputbox-centered {

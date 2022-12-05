@@ -31,7 +31,7 @@ export default function AnswerBox(props) {
     useEffect(()=> {
         createAnswerBoxes();
         setCorrectInputs();
-    }, [value]);
+    });
 
     return (
         <div ref={cells} className="answer-container ">

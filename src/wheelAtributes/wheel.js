@@ -2,13 +2,13 @@ import React, {useEffect, useRef, useState} from "react";
 import "./wheelSpin.css";
 
 
-export function Wheel() {
+export function Wheel(props) {
     const [num, setNum] = useState(null);
     const wheelSpin = useRef(null);
 
     const handleClick = () => {
         let newNum = num + Math.ceil(Math.random() * (600) + 400);
-        fetch("http://127.0.0.1:8000/setPiece",{
+        fetch("http://127.0.0.1:8000/setPiece/" + props.id,{
             method : 'POST',
             body : JSON.stringify({'num' : newNum}),
         })
@@ -16,7 +16,7 @@ export function Wheel() {
     }
 
     useEffect( () => {
-        fetch("http://127.0.0.1:8000/piece",{
+        fetch("http://127.0.0.1:8000/piece/" + props.id,{
         }).then(res => res.json())
             .then((result) => {
                 setNum(parseInt(result.piece));

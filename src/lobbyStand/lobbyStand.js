@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from "react";
 
-export default function LobbyStand({standData}) {
+export default function LobbyStand(props) {
     const standContainer = useRef(null);
 
     useEffect(() => {
@@ -8,12 +8,12 @@ export default function LobbyStand({standData}) {
     })
 
     function turnState() {
-        fetch("http://127.0.0.1:8000/turn")
+        fetch("http://127.0.0.1:8000/turn/" + props.id)
             .then(res => res.json())
             .then(
                 (result) => {
                     let stand = standContainer.current;
-                    if (standData == result.turn) {
+                    if (props.standData == result.turn) {
                         stand.classList.add("currentTurn");
                     } else {
                         stand.classList.remove("currentTurn")
@@ -23,6 +23,6 @@ export default function LobbyStand({standData}) {
     }
 
     return (
-        <div ref={standContainer} className="lobbyStand">{standData}</div>
+        <div ref={standContainer} className="lobbyStand">{props.standData}</div>
     )
 }

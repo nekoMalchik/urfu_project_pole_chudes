@@ -21,11 +21,11 @@ export default function InputBox(props) {
 
 
     function addGuessToServer(inputVal) {
-        fetch("http://127.0.0.1:8000/addChar", {
+        fetch("http://127.0.0.1:8000/addChar/" + props.id, {
             method: 'POST',
             body: JSON.stringify({'char': inputVal}),
         }).then(response => response.json())
-        fetch("http://127.0.0.1:8000/chars")
+        fetch("http://127.0.0.1:8000/chars/" + props.id)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -55,14 +55,14 @@ export default function InputBox(props) {
 
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/turn")
+        fetch("http://127.0.0.1:8000/turn/" + props.id)
             .then(res => res.json())
             .then(
                 (result) => {
                     setTurn(result.turn);
                 },
             );
-        fetch("http://127.0.0.1:8000/chars")
+        fetch("http://127.0.0.1:8000/chars/" + props.id)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -70,11 +70,10 @@ export default function InputBox(props) {
                 },
             );
         }, [turn, setTurn]
-
     );
 
     function setNextTurn() {
-        fetch("http://127.0.0.1:8000/incTurn")
+        fetch("http://127.0.0.1:8000/incTurn/" + props.id)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -101,7 +100,7 @@ export default function InputBox(props) {
             <div className="usedchars">
                 {usedChars}
             </div>
-            <LobbyStands />
+            <LobbyStands id={props.id}/>
             <WinCondition active={modalActive} setActive={setModalActive}/>
         </div>
     );

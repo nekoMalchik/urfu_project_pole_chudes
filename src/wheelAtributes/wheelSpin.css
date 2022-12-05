@@ -85,7 +85,7 @@
 }
 
 i {
-    border: solid white;
+    border: solid black;
     width: 40px;
     height: 40px;
     border-width: 0 20px 20px 0;
@@ -96,7 +96,7 @@ i {
 #spin{
     position: relative;
     z-index: 10;
-    top: -330px;
+    top: -300px;
     left: 205px;
     background-color: #e2e2e2;
     padding: 10px;
